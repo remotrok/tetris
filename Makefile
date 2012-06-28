@@ -1,4 +1,4 @@
-test:
-	mocha -u qunit --reporter list tests/*.js
-	
-.PHONY: test
+jslint:
+	jslint --browser --color --plusplus js/*.js tests/js/*.js
+
+.PHONY: jslint
