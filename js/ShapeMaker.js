@@ -67,7 +67,3 @@ var ShapeMaker = {
 		}
 	]
 };
-
-exports.ShapeMaker = ShapeMaker;
-exports.Shape = Shape;
-

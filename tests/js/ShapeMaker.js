@@ -1,6 +1,3 @@
-var ShapeMaker = require("../ShapeMaker").ShapeMaker;
-var expect = require("expect.js");
-
 suite('ShapeMaker');
 
 test('ShapeConstructorMakesCopies', function() {
@@ -15,7 +12,7 @@ test('ShapeConstructorMakesCopies', function() {
 	expect(shape.id).to.not.equal(shape2.id);
 	expect(shape.coords[0][0]).to.not.equal(shape2.coords[0][0]);
 });
-/*
+
 test('koko', function() {
 	expect(1).to.be.ok();
 });
@@ -26,4 +23,4 @@ test('popo', function() {
 
 test('koko', function() {
 	expect(1).to.be.ok();
-});*/
+});
