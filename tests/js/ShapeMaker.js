@@ -23,7 +23,7 @@ test('A Shape have coords(Array)', function () {
 
 test('A Shape id is one of C, Z, L, LI, B, S or T', function () {
 	var shape = ShapeMaker.getRandomShape();
-	expect(['S', 'Z', 'L', 'LI', 'B', 'S', 'T']).to.contain(shape.id);
+	expect(['C', 'Z', 'L', 'LI', 'B', 'S', 'T']).to.contain(shape.id);
 });
 
 test('A Shape is formed by 4 squares', function () {
