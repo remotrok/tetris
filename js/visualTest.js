@@ -1,3 +1,4 @@
+/*global ShapeMaker*/
 'use strict';
 
 var Painter = function (canvas, l) {
@@ -50,7 +51,7 @@ window.onload = function () {
 
     painter.draw(shape);
 
-    canvas.onclick = function () {
+    painter.canvas.onclick = function () {
         painter.clear(shape);
         shape.rotate();
         painter.draw(shape);

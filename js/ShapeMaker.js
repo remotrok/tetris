@@ -1,13 +1,11 @@
+/*global Shape*/
+
 'use strict';
 
 var ShapeMaker = {
 
-    make : function (template) {
-        return new Shape(template);
-    },
-
     getRandomShape : function () {
-        return this.make(this.tetramins[Math.floor(Math.random() * 7)]);
+        return new Shape(this.tetramins[Math.floor(Math.random() * 7)]);
     },
 
     tetramins : [

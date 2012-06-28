@@ -1,21 +1,10 @@
+/*global suite, test, expect,
+	ShapeMaker, Shape*/
+
 'use strict';
 
+
 suite('ShapeMaker');
-
-test('Shape Constructor Makes Copies', function () {
-	var shape, shape2;
-
-	shape = ShapeMaker.make(ShapeMaker.tetramins[0]);
-
-	shape.id = "koko";
-	shape.coords[0][0] = 30;
-
-	shape2 = ShapeMaker.make(ShapeMaker.tetramins[0]);
-
-	expect(shape).to.not.equal(shape2);
-	expect(shape.id).to.not.equal(shape2.id);
-	expect(shape.coords[0][0]).to.not.equal(shape2.coords[0][0]);
-});
 
 test('A Shape have an id(string)', function () {
 	var shape = ShapeMaker.getRandomShape();
