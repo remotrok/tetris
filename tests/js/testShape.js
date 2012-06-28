@@ -17,9 +17,8 @@ test('Shape Constructor Makes Copies', function () {
     shape = new Shape(template);
 
 	shape.id = "koko";
-	shape.coords[0][0] = 30;
+	shape.squares[0].coords[0] = 30;
 
-	expect(shape).to.not.equal(template);
 	expect(shape.id).to.not.equal(template.id);
-	expect(shape.coords[0][0]).to.not.equal(template.coords[0][0]);
+	expect(shape.squares[0].coords[0]).to.not.equal(template.coords[0][0]);
 });

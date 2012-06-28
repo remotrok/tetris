@@ -11,14 +11,9 @@ test('A Shape have an id(string)', function () {
 	expect(shape.id).be.an('string');
 });
 
-test('A Shape have a color(string)', function () {
+test('A Shape have squares(Array)', function () {
 	var shape = ShapeMaker.getRandomShape();
-	expect(shape.color).be.an('string');
-});
-
-test('A Shape have coords(Array)', function () {
-	var shape = ShapeMaker.getRandomShape();
-	expect(shape.coords).be.an(Array);
+	expect(shape.squares).be.an(Array);
 });
 
 test('A Shape id is one of C, Z, L, LI, B, S or T', function () {
@@ -28,5 +23,5 @@ test('A Shape id is one of C, Z, L, LI, B, S or T', function () {
 
 test('A Shape is formed by 4 squares', function () {
 	var shape = ShapeMaker.getRandomShape();
-	expect(shape.coords.length).to.be(4);
+	expect(shape.squares.length).to.be(4);
 });

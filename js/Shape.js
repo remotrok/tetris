@@ -2,12 +2,16 @@
 
 function Shape(template) {
     var i;
-    this.color = template.color;
     this.id = template.id;
-    this.coords = [[0, 0], [0, 0], [0, 0], [0, 0]];
+    this.squares = [
+        {color: template.color, coords: [0, 0]},
+        {color: template.color, coords: [0, 0]},
+        {color: template.color, coords: [0, 0]},
+        {color: template.color, coords: [0, 0]}];
+
     for (i = 0; i < template.coords.length; i++) {
-        this.coords[i][0] = template.coords[i][0];
-        this.coords[i][1] = template.coords[i][1];
+        this.squares[i].coords[0] = template.coords[i][0];
+        this.squares[i].coords[1] = template.coords[i][1];
     }
     this.xabs = 0;
     this.yabs = 0;
@@ -20,9 +24,9 @@ Shape.prototype.shift = function (dx, dy) {
 
 Shape.prototype.rotate = function () {
     var i, temp;
-    for (i = 0; i < this.coords.length; i++) {
-        temp = this.coords[i][0];
-        this.coords[i][0] = this.coords[i][1];
-        this.coords[i][1] = -temp;
+    for (i = 0; i < this.squares.length; i++) {
+        temp = this.squares[i].coords[0];
+        this.squares[i].coords[0] = this.squares[i].coords[1];
+        this.squares[i].coords[1] = -temp;
     }
 };
