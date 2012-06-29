@@ -1,13 +1,13 @@
 /*global ShapeMaker*/
 'use strict';
 
-var Painter = function (canvas, l) {
+var Painter = function (canvas) {
     var i, x, y;
     this.canvas = canvas;
 
     this.context = canvas.getContext('2d');
 
-    this.l = l;
+    this.l = 1;
 
     this.visitor = function (action, shape) {
         for (i = 0; i < shape.squares.length; i++) {
@@ -54,14 +54,36 @@ var Painter = function (canvas, l) {
     };
 };
 
-window.onload = function () {
-    var painter = new Painter(document.getElementById('canvas'), 20),
-        shape = ShapeMaker.getRandomShape();
+function setCanvasDimensions(canvas, width, height, ratio){
+    if(height / width < ratio) {
+        canvas.height = height;
+        canvas.width = height / ratio;
+    }
+    else {
+        canvas.width = width;
+        canvas.height = ratio * width;
+    }
+}
 
+window.onload = function () {
+    var canvas = document.getElementById('canvas');
+    var container = document.getElementById('container');
+    var painter = new Painter(canvas);
+    var shape = ShapeMaker.getRandomShape();
     shape.xabs = 40;
     shape.yabs = 40;
 
-    painter.draw(shape);
+
+    window.addEventListener('resize', resizeCanvas, false);
+
+    function resizeCanvas() {
+        setCanvasDimensions(canvas, container.offsetWidth, container.offsetHeight, 2);
+        painter.l = canvas.width / 10;
+        painter.draw(shape);
+    };
+
+    resizeCanvas();
+
 
     painter.canvas.onclick = function () {
         painter.clear(shape);
