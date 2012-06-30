@@ -4,6 +4,7 @@ var gameUI = (function ()
 		initialize: function(){
 			this.game = game;
 			this.game.tictac(this.moveDown);
+			this.game.onBottomChange(this.drawBottom);
 			this.canvas = document.getElementById('canvas');
 	    	this.container = document.getElementById('container');
 	    	this.painter = new Painter(this.canvas, this.container, this.game.width, this.game.height);
@@ -59,6 +60,16 @@ var gameUI = (function ()
 	    
 	    moveDown: function(){
 			self.shiftFallingShape(0,1);
+		},
+		
+		drawBottom: function() {
+			var i;
+			
+			self.resizeCanvas();
+			
+			for(i = 0; i < self.game.rows.length; i++){
+				self.painter.draw(self.game.rows[i]);
+			}
 		}
 	};
 
