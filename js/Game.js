@@ -24,6 +24,22 @@ var game = {
 		this.bottomChange = callback;
 	},
 
+	distanceToBottom: function() {
+		var i, j, square, row, col,
+			result = this.height - this.shape.ymax();
+		for(i = 0; i < this.shape.squares.length; i++){
+			square = this.shape.squares[i];
+			col = this.shape.xabs + square.coords[0];
+			row = this.shape.yabs + square.coords[1];
+			for(j = row + 1; j < this.rows.length; j++){
+				if (this.rows[j].squares[col]) {
+					result = Math.min(result, j - row)
+				};
+			}
+		}
+		return result - 1;
+	},
+
 	shiftFallingShape: function (dx, dy) {
 		this.shape.shift(dx, dy);
 
@@ -131,7 +147,7 @@ var game = {
 		this.shape.yabs -= this.shape.ymin();
 		if(this.isInvalidShapePosition()) {
 			clearInterval(this.currentInterval);
-			console.log('Game Over :´-(')
+			console.log("Game Over :'-(")
 		}
 	},
 

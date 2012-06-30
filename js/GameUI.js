@@ -25,6 +25,9 @@ var gameUI = (function ()
 	    		if(event.which === 39){
 	    			self.shiftFallingShape(1, 0);
 	    		}
+	    		if(event.which === 40){
+	    			self.fallingShapeToBottom();
+	    		}
 	    	}
 	    },
 
@@ -39,6 +42,12 @@ var gameUI = (function ()
 	        self.game.shiftFallingShape(dx, dy);
 	        self.painter.draw(self.game.shape);
 		},
+
+		fallingShapeToBottom: function () {
+    		self.painter.clear(self.game.shape);
+	        self.game.shiftFallingShape(0, self.game.distanceToBottom())
+	        self.painter.draw(self.game.shape);
+	    },
 
 		setCanvasDimensions: function(){
 	        var ratio = this.game.height / this.game.width;
