@@ -1,11 +1,18 @@
 /*global ShapeMaker*/
 'use strict';
 
-var Painter = function (canvas) {
+var Painter = function (canvas, container, width, height) {
     var i, x, y;
+
     this.canvas = canvas;
 
+    this.container = container;
+
     this.context = canvas.getContext('2d');
+
+    this.width = width;
+
+    this.height = height;
 
     this.l = 1;
 
@@ -52,46 +59,17 @@ var Painter = function (canvas) {
         }, shape);
         console.log(shape.id);
     };
+
+
+
+
 };
 
-function setCanvasDimensions(canvas, width, height, ratio){
-    if(height / width < ratio) {
-        canvas.height = height;
-        canvas.width = height / ratio;
-    }
-    else {
-        canvas.width = width;
-        canvas.height = ratio * width;
-    }
-}
+
 
 window.onload = function () {
-    var canvas = document.getElementById('canvas');
-    var container = document.getElementById('container');
-    var painter = new Painter(canvas);
-    var shape = ShapeMaker.getRandomShape();
-    shape.xabs = 40;
-    shape.yabs = 40;
 
-
-    window.addEventListener('resize', resizeCanvas, false);
-
-    function resizeCanvas() {
-        setCanvasDimensions(canvas, container.offsetWidth, container.offsetHeight, 2);
-        painter.l = canvas.width / 10;
-        painter.draw(shape);
-    };
-
-    resizeCanvas();
-
-
-    painter.canvas.onclick = function () {
-        painter.clear(shape);
-        shape.rotate();
-        painter.draw(shape);
-    };
-
-
+    gameUI.initialize();
 };
 
 
