@@ -12,8 +12,6 @@ var game = {
 	},
 	
 	shiftFallingShape: function (dx, dy) {
-		console.log(this.shape.ymax(), dy, this.height)
-		
 		if(this.shape.xmin()+dx < 0 || this.shape.xmax()+dx >= this.width){
 			dx = 0;
 		}
