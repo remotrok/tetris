@@ -1,4 +1,3 @@
-/*global ShapeMaker*/
 'use strict';
 
 var Painter = function (canvas, container, width, height) {
@@ -18,8 +17,8 @@ var Painter = function (canvas, container, width, height) {
 
     this.visitor = function (action, shape) {
         for (i = 0; i < shape.squares.length; i++) {
-            x = shape.xabs + shape.squares[i].coords[0] * this.l;
-            y = shape.yabs + shape.squares[i].coords[1] * this.l;
+            x = (shape.xabs + shape.squares[i].coords[0]) * this.l;
+            y = (shape.yabs + shape.squares[i].coords[1]) * this.l;
 
             action.call(this, x, y, shape.squares[i]);
         }
@@ -31,26 +30,28 @@ var Painter = function (canvas, container, width, height) {
     };
 
     this.draw = function (shape) {
-        this.context.strokeStyle = '#000';
-        this.context.shadowOffsetX = 0;
-        this.context.shadowOffsetY = 2;
-        this.context.shadowBlur = 2;
-        this.context.shadowColor   = 'rgba(0, 0, 0, 0.5)';
+    	if(shape){
+		    this.context.strokeStyle = '#000';
+		    this.context.shadowOffsetX = 0;
+		    this.context.shadowOffsetY = 2;
+		    this.context.shadowBlur = 2;
+		    this.context.shadowColor   = 'rgba(0, 0, 0, 0.5)';
 
-        this.visitor(function (x, y, square) {
-            this.context.fillStyle = square.color;
-            this.context.fillRect(x, y, this.l, this.l);
-        }, shape);
+		    this.visitor(function (x, y, square) {
+		        this.context.fillStyle = square.color;
+		        this.context.fillRect(x, y, this.l, this.l);
+		    }, shape);
 
-        this.context.lineWidth = 2;
-        this.context.shadowColor   = 'rgba(0, 0, 0, 0.0)';
+		    this.context.lineWidth = 2;
+		    this.context.shadowColor   = 'rgba(0, 0, 0, 0.0)';
 
-        this.visitor(function (x, y, square) {
-            this.context.fillStyle = shape.squares[i].color;
-            this.context.fillRect(x, y, this.l, this.l);
-            this.context.strokeRect(x, y, this.l, this.l);
-        }, shape);
-        console.log(shape.id);
+		    this.visitor(function (x, y, square) {
+		        this.context.fillStyle = shape.squares[i].color;
+		        this.context.fillRect(x, y, this.l, this.l);
+		        this.context.strokeRect(x, y, this.l, this.l);
+		    }, shape);
+		    console.log(shape.id);
+        }
     };
 
     this.clear = function (shape) {
@@ -59,10 +60,6 @@ var Painter = function (canvas, container, width, height) {
         }, shape);
         console.log(shape.id);
     };
-
-
-
-
 };
 
 
@@ -70,6 +67,8 @@ var Painter = function (canvas, container, width, height) {
 window.onload = function () {
 
     gameUI.initialize();
+    game.step();
+    gameUI.resizeCanvas();
 };
 
 
