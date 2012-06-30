@@ -25,22 +25,21 @@ var game = {
 	},
 
 	shiftFallingShape: function (dx, dy) {
-		if(this.shape.xmin()+dx < 0 || this.shape.xmax()+dx >= this.width){
-			dx = 0;
-		}
-
 		this.shape.shift(dx, dy);
 
-		if(this.hasShapeGotToBottom()){
+		if(this.isInvalidShapePosition()){
 			this.shape.shift(-dx, -dy);
-			this.shapeGotToBottom();
+			if(dy != 0)
+				this.shapeGotToBottom();
 		}
 	},
 
-	hasShapeGotToBottom: function() {
+	isInvalidShapePosition: function() {
 		var i, square, rowIndex, squareIndex;
 
 		if(this.shape.ymax() >= this.height)
+			return true;
+		if(this.shape.xmin() < 0 || this.shape.xmax() >= this.width)
 			return true;
 
 		for(i=0; i<this.shape.squares.length; i++) {
@@ -130,8 +129,9 @@ var game = {
 		this.shape = ShapeMaker.getRandomShape();
 		this.shape.xabs = this.width / 2 - 1;
 		this.shape.yabs -= this.shape.ymin();
-		if(this.hasShapeGotToBottom()) {
+		if(this.isInvalidShapePosition()) {
 			clearInterval(this.currentInterval);
+			console.log('Game Over :´-(')
 		}
 	},
 
