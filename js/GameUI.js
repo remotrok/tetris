@@ -33,13 +33,13 @@ var gameUI = (function ()
 	        self.game.rotateFallingShape();
 	        self.painter.draw(self.game.shape);
 		},
-		
+
 		shiftFallingShape: function (dx, dy) {
 	        self.painter.clear(self.game.shape);
 	        self.game.shiftFallingShape(dx, dy);
 	        self.painter.draw(self.game.shape);
 		},
-		
+
 		setCanvasDimensions: function(){
 	        var ratio = this.game.height / this.game.width;
 	        if(this.container.offsetHeight / this.container.offsetWidth < ratio) {
@@ -57,16 +57,16 @@ var gameUI = (function ()
 	        self.painter.l = self.canvas.width / self.game.width;
 	        self.painter.draw(self.game.shape);
 	    },
-	    
+
 	    moveDown: function(){
 			self.shiftFallingShape(0,1);
 		},
-		
+
 		drawBottom: function() {
 			var i;
-			
+
 			self.resizeCanvas();
-			
+
 			for(i = 0; i < self.game.rows.length; i++){
 				self.painter.draw(self.game.rows[i]);
 			}
