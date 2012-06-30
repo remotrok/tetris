@@ -5,14 +5,13 @@ var gameUI = (function ()
 			this.game = game;
 			this.canvas = document.getElementById('canvas');
 	    	this.container = document.getElementById('container');
-	    	this.painter = new Painter(canvas, container, game.width, game.height);
+	    	this.painter = new Painter(this.canvas, this.container, this.game.width, this.game.height);
 
 		    window.addEventListener('resize', this.resizeCanvas, false);
 
 	    	this.resizeCanvas();
 
 	    	this.canvas.addEventListener('click', this.rotate, false);
-
 		},
 
 		rotate: function () {
