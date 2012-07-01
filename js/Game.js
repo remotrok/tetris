@@ -33,8 +33,8 @@ var game = {
 			row = this.shape.yabs + square.coords[1];
 			for(j = row + 1; j < this.rows.length; j++){
 				if (this.rows[j].squares[col]) {
-					result = Math.min(result, j - row)
-				};
+					result = Math.min(result, j - row);
+				}
 			}
 		}
 		return result - 1;
@@ -45,7 +45,7 @@ var game = {
 
 		if(this.isInvalidShapePosition()){
 			this.shape.shift(-dx, -dy);
-			if(dy != 0)
+			if(dy !== 0)
 				this.shapeGotToBottom();
 		}
 	},
@@ -83,7 +83,7 @@ var game = {
 		for(i = 0; i < this.shape.squares.length; i++){
 			square = this.shape.squares[i];
 
-			square.color = "#e1e1e1"
+			square.color = "#e1e1e1";
 
 			rowIndex = this.shape.yabs + square.coords[1];
 
@@ -135,7 +135,6 @@ var game = {
 		for(j=0; j<row.squares.length; j++) {
 			if(row.squares[j] === undefined) {
 				return false;
-				break;
 			}
 		}
 		return true;
@@ -147,7 +146,7 @@ var game = {
 		this.shape.yabs -= this.shape.ymin();
 		if(this.isInvalidShapePosition()) {
 			clearInterval(this.currentInterval);
-			console.log("Game Over :'-(")
+			console.log("Game Over :'-(");
 		}
 	},
 
