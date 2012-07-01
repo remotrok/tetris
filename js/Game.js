@@ -3,7 +3,7 @@ var game = {
 	height: 20,
 	rows: [],
 
-	tick: 200,
+	tick: 500,
 
 	initialize : function () {
 		var i, j, newSquares;

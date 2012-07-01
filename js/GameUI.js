@@ -13,7 +13,39 @@ var gameUI = (function ()
 
             this.resizeCanvas();
 
-            this.canvas.addEventListener('click', this.rotate, false);
+            document.body.addEventListener('touchmove',function(event){
+                event.preventDefault(); },false);
+        
+            this.canvas.ontouchstart = function(event){
+                self.touchStartAt = event.touches[0].pageY;
+                self.touchStarted = true;
+            };
+
+            this.canvas.ontouchmove = function(event){
+                var touchDistance = event.touches[0].pageY - self.touchStartAt;
+                if(self.touchStarted && touchDistance > 1){
+                    self.fallingShapeToBottom();
+                    self.foo = true;
+                }
+                self.touchStarted = false;
+            };
+
+            this.canvas.ontouchend = function(event) {
+                if(!self.foo) {
+                    self.rotateFallingShape();
+                }
+                self.foo = false;
+            };
+
+
+            window.addEventListener('deviceorientation', function(event){
+                var vel = Math.round(event.gamma / 30);
+                var dx = vel / Math.abs(vel) || 0;
+                if(dx !== 0){
+                    self.shiftFallingShape(vel, 0);
+                    console.log('eehh', vel);
+                }
+            });
 
             window.onkeydown = function(event) {
                 if(event.which === 38){
