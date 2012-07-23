@@ -28,33 +28,33 @@ Shape.prototype.applyRotation = function (sign) {
 		temp = this.squares[i].coords[0];
 		this.squares[i].coords[0] = sign[0] * this.squares[i].coords[1];
 		this.squares[i].coords[1] = sign[1] * temp;
-	}	
+	}
 };
 
 Shape.prototype.rotate = function () {
-	if(this.id === 'C')
+	if (this.id === 'C') {
 		return;
+	}
 	this.applyRotation([1, -1]);
 };
 
 Shape.prototype.undoRotate = function () {
-	if(this.id === 'C')
+	if (this.id === 'C') {
 		return;
+	}
 	this.applyRotation([-1, 1]);
 };
 
-Shape.prototype.extremalCoord = function(index, func) {
-	return function(){
-		var i;
-		var result = this.squares[0].coords[index];
-		for(i=1; i < this.squares.length; i++) {
-			result = func(result, this.squares[i].coords[index]); 
+Shape.prototype.extremalCoord = function (index, func) {
+	return function () {
+		var i, coordMax,
+			result = this.squares[0].coords[index];
+		for (i = 1; i < this.squares.length; i++) {
+			result = func(result, this.squares[i].coords[index]);
 		}
-		
-		var coordMax = (index === 1) ? this.yabs : this.xabs;
-		
+		coordMax = (index === 1) ? this.yabs : this.xabs;
 		return coordMax + result;
-	}
+	};
 };
 
 Shape.prototype.xmin = Shape.prototype.extremalCoord(0, Math.min);

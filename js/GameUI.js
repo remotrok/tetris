@@ -50,37 +50,37 @@ var gameUI = (function ()
             });
 
             window.onkeydown = function(event) {
-                if(event.which === 38){
+                if (event.which === 38) {
                     self.rotateFallingShape();
                 }
-                if(event.which === 37){
+                if (event.which === 37) {
                     self.shiftFallingShape(-1, 0);
                 }
-                if(event.which === 39){
+                if (event.which === 39) {
                     self.shiftFallingShape(1, 0);
                 }
-                if(event.which === 40){
+                if (event.which === 40) {
                     self.fallingShapeToBottom();
                 }
             };
         },
 
         rotateFallingShape: function () {
-            self.painter.clear(self.game.shape);
+            self.painter.clear(self.game.shape, self.l);
             self.game.rotateFallingShape();
-            self.painter.draw(self.game.shape);
+            self.painter.draw(self.game.shape, self.l);
         },
 
         shiftFallingShape: function (dx, dy) {
-            self.painter.clear(self.game.shape);
+            self.painter.clear(self.game.shape, self.l);
             self.game.shiftFallingShape(dx, dy);
-            self.painter.draw(self.game.shape);
+            self.painter.draw(self.game.shape, self.l);
         },
 
         fallingShapeToBottom: function () {
-            self.painter.clear(self.game.shape);
+            self.painter.clear(self.game.shape, self.l);
             self.game.shiftFallingShape(0, self.game.distanceToBottom());
-            self.painter.draw(self.game.shape);
+            self.painter.draw(self.game.shape, self.l);
         },
 
         setCanvasDimensions: function (canvas) {
@@ -100,9 +100,8 @@ var gameUI = (function ()
         resizeCanvas: function () {
             self.setCanvasDimensions(self.canvas);
             self.setCanvasDimensions(self.canvasBottom);
-            self.painter.l = self.canvas.width / self.game.width;
-            self.bottomPainter.l = self.canvas.width / self.game.width;
-            self.painter.draw(self.game.shape);
+            self.l = self.canvas.width / self.game.width;
+            self.painter.draw(self.game.shape, self.l);
         },
 
         moveDown: function () {
@@ -114,10 +113,11 @@ var gameUI = (function ()
 
             self.resizeCanvas();
 
-            for(i = 0; i < self.game.rows.length; i++){
-                self.bottomPainter.draw(self.game.rows[i]);
+            for (i = 0; i < self.game.rows.length; i++) {
+                self.bottomPainter.draw(self.game.rows[i], self.l);
             }
         }
     };
+
     return self;
  }) ();
