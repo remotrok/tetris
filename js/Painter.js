@@ -1,7 +1,6 @@
 'use strict';
 
 var Painter = function (canvas, container, width, height) {
-    var i, x, y;
 
     this.canvas = canvas;
     this.container = container;
@@ -10,6 +9,7 @@ var Painter = function (canvas, container, width, height) {
     this.height = height;
 
     function visitor(action, shape, l) {
+        var i, x, y;
         for (i = 0; i < shape.squares.length; i++) {
             var square = shape.squares[i];
 
@@ -21,7 +21,7 @@ var Painter = function (canvas, container, width, height) {
         }
     }
 
-    this.draw = function (shape, l) {
+    this._draw = function (shape, l) {
         if (shape) {
             this.context.strokeStyle = '#000';
             this.context.shadowOffsetX = 0;
@@ -38,11 +38,24 @@ var Painter = function (canvas, container, width, height) {
             this.context.shadowColor   = 'rgba(0, 0, 0, 0.0)';
 
             visitor.call(this, function (x, y, square) {
-                this.context.fillStyle = shape.squares[i].color;
+                this.context.fillStyle = square.color;
                 this.context.fillRect(x, y, l, l);
                 this.context.strokeRect(x, y, l, l);
             }, shape, l);
         }
+    };
+
+    this.draw = function (shape, l) {
+        this.canvas.width = this.canvas.width;
+        this._draw(shape, l);
+    };
+
+    this.drawShapes = function (shapes, l) {
+        var j;
+        this.canvas.width = this.canvas.width;
+        for (j = 0; j < shapes.length; j++) {
+                this._draw(shapes[j], l);
+            }
     };
 
     this.clear = function (shape, l) {
