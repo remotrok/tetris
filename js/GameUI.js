@@ -3,11 +3,16 @@ var gameUI = (function ()
     var self = {
         initialize: function () {
             this.game = game;
+
             this.game.tictac(this.moveDown);
             this.game.onBottomChange(this.drawBottom);
+            this.game.onRowsCompleted(this.updateScore);
+
             this.canvas = document.getElementById('canvas');
             this.canvasBottom = document.getElementById('canvasBottom');
             this.container = document.getElementById('container');
+            this.score = document.getElementById('score');
+
             this.painter = new Painter(this.canvas, this.container, this.game.width, this.game.height);
             this.bottomPainter = new Painter(this.canvasBottom, this.container, this.game.width, this.game.height);
 
@@ -67,17 +72,17 @@ var gameUI = (function ()
 
         rotateFallingShape: function () {
             self.game.rotateFallingShape();
-            self.painter.draw(self.game.shape, self.l);
+            self.painter.redraw(self.game.shape, self.l);
         },
 
         shiftFallingShape: function (dx, dy) {
             self.game.shiftFallingShape(dx, dy);
-            self.painter.draw(self.game.shape, self.l);
+            self.painter.redraw(self.game.shape, self.l);
         },
 
         fallingShapeToBottom: function () {
             self.game.shiftFallingShape(0, self.game.distanceToBottom());
-            self.painter.draw(self.game.shape, self.l);
+            self.painter.redraw(self.game.shape, self.l);
         },
 
         setCanvasDimensions: function (canvas) {
@@ -98,7 +103,9 @@ var gameUI = (function ()
             self.setCanvasDimensions(self.canvas);
             self.setCanvasDimensions(self.canvasBottom);
             self.l = self.canvas.width / self.game.width;
-            self.painter.draw(self.game.shape, self.l);
+            self.painter.redraw(self.game.shape, self.l);
+            self.bottomPainter.redrawShapes(self.game.rows, self.l);
+
         },
 
         moveDown: function () {
@@ -106,7 +113,12 @@ var gameUI = (function ()
         },
 
         drawBottom: function () {
-            self.bottomPainter.drawShapes(self.game.rows, self.l);
+            self.bottomPainter.redrawShapes(self.game.rows, self.l);
+        },
+
+        updateScore: function() {
+            console.log(self.game.score);
+            self.score.innerHTML = self.game.score;
         }
     };
 

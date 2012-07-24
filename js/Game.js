@@ -3,6 +3,7 @@ var game = {
 	height: 20,
 	rows: [],
 	tick: 500,
+	score: 0,
 
 	initialize : function () {
 		var i, j, newSquares;
@@ -17,6 +18,10 @@ var game = {
 
 	onBottomChange: function (callback) {
 		this.bottomChange = callback;
+	},
+
+	onRowsCompleted: function(callback) {
+		this.updateScoreView = callback;
 	},
 
 	distanceToBottom: function () {
@@ -92,17 +97,17 @@ var game = {
 	},
 
 	shapeGotToBottom: function () {
-		var i;
+		var completeRows;
 		this.addFallingShapeToBottom();
-		this.shape = null;
-		this.eliminateCompleteRows();
+		completeRows = this.getCompleteRows();
+		this.updateScore(completeRows);
+		this.eliminateCompleteRows(completeRows);
 		this.bottomChange();
 		this.createNewFallingShape();
 	},
 
-	eliminateCompleteRows: function () {
-		var i, j, rowToEliminate,
-			completeRows = this.checkCompleteRows();
+	eliminateCompleteRows: function (completeRows) {
+		var i, j, rowToEliminate;
 		for (i=0; i<completeRows.length; i++) {
 			rowToEliminate = completeRows[i];
 
@@ -113,7 +118,14 @@ var game = {
 		}
 	},
 
-	checkCompleteRows: function () {
+	updateScore: function (completeRows) {
+		if (completeRows.length) {
+			this.score += completeRows.length;
+			this.updateScoreView();
+		}
+	},
+
+	getCompleteRows: function () {
 		var i, completeRows = [];
 		for (i = 0; i<this.rows.length; i++) {
 			if (this.isRowComplete(this.rows[i])) {

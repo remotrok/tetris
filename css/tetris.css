@@ -8,12 +8,16 @@ html, body, div {
     overflow: hidden;
 }
 
+#score {
+	height: 10%;
+}
+
 #container {
     margin-left:auto;
     margin-right:auto;
 	background-color: #efefef;
 	/*position: relative;*/
-	height: 100%;
+	height: 90%;
 	width: 100%;
 	text-align:center;
 }

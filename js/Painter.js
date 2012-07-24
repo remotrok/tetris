@@ -21,7 +21,7 @@ var Painter = function (canvas, container, width, height) {
         }
     }
 
-    this._draw = function (shape, l) {
+    this.draw = function (shape, l) {
         if (shape) {
             this.context.strokeStyle = '#000';
             this.context.shadowOffsetX = 0;
@@ -45,16 +45,16 @@ var Painter = function (canvas, container, width, height) {
         }
     };
 
-    this.draw = function (shape, l) {
+    this.redraw = function (shape, l) {
         this.canvas.width = this.canvas.width;
-        this._draw(shape, l);
+        this.draw(shape, l);
     };
 
-    this.drawShapes = function (shapes, l) {
+    this.redrawShapes = function (shapes, l) {
         var j;
         this.canvas.width = this.canvas.width;
         for (j = 0; j < shapes.length; j++) {
-                this._draw(shapes[j], l);
+                this.draw(shapes[j], l);
             }
     };
 
