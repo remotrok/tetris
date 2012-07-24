@@ -4,6 +4,8 @@ var game = {
 	rows: [],
 	tick: 500,
 	score: 0,
+	levelScore: 2,
+	level: 1,
 
 	initialize : function () {
 		var i, j, newSquares;
@@ -121,6 +123,7 @@ var game = {
 	updateScore: function (completeRows) {
 		if (completeRows.length) {
 			this.score += completeRows.length;
+			this.level = 1 + Math.floor(this.score / this.levelScore);
 			this.updateScoreView();
 		}
 	},

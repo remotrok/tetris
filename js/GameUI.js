@@ -12,6 +12,7 @@ var gameUI = (function ()
             this.canvasBottom = document.getElementById('canvasBottom');
             this.container = document.getElementById('container');
             this.score = document.getElementById('score');
+            this.level = document.getElementById('level');
 
             this.painter = new Painter(this.canvas, this.container, this.game.width, this.game.height);
             this.bottomPainter = new Painter(this.canvasBottom, this.container, this.game.width, this.game.height);
@@ -119,6 +120,7 @@ var gameUI = (function ()
         updateScore: function() {
             console.log(self.game.score);
             self.score.innerHTML = self.game.score;
+            self.level.innerHTML = self.game.level;
         }
     };
 
