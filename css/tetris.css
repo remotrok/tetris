@@ -8,13 +8,26 @@ html, body, div {
     overflow: hidden;
 }
 
-#score {
+#header {
 	height: 10%;
 }
 
+#score {
+	width: 50%;
+	background-color: #ef00ef;
+	float: left;
+}
+
+#level {
+	left: 50%;
+	width: 50%;
+	background-color: #efef00;
+	float: left;
+}
+
 #container {
-    margin-left:auto;
-    margin-right:auto;
+    /*margin-left:auto;
+    margin-right:auto;*/
 	background-color: #efefef;
 	/*position: relative;*/
 	height: 90%;
@@ -28,7 +41,7 @@ html, body, div {
 	border: 1px solid #000;
 	/*background-color: #efef00;*/
 	position: absolute;
-	z-index: 1;
+	z-index: 2;
 }
 
 #canvasBottom {
@@ -38,4 +51,10 @@ html, body, div {
 	background-color: #efefff;
 	position: absolute;
 	z-index: 0;
+}
+
+#fog {
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.2);
+	z-index: 1;
 }

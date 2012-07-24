@@ -85,15 +85,10 @@ var game = {
 		var i, square, rowIndex, colIndex;
 		for (i = 0; i < this.shape.squares.length; i++) {
 			square = this.shape.squares[i];
-
-			square.color = "#e1e1e1";
-
 			rowIndex = this.shape.yabs + square.coords[1];
-
 			colIndex = this.shape.xabs + square.coords[0];
 			square.coords[0] = colIndex;
 			square.coords[1] = 0;
-
 			this.rows[rowIndex].squares[colIndex] = square;
 		}
 	},

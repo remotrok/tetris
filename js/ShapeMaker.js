@@ -11,43 +11,43 @@ var ShapeMaker = {
     tetramins : [
         {
             id : "C",
-            "color" : "#efefef",
+            "color" : "yellow",
             "coords" : [[0, 0], [-1, -1], [-1, 0], [0, -1]]
         },
 
         {
             id : "L",
-            "color" : "#efefef",
+            "color" : "orange",
             "coords" : [[0, 0], [0, -1], [0, 1], [1, 1]]
         },
 
         {
             id : "LI",
-            "color" : "#efefef",
+            "color" : "blue",
             "coords" : [[0, 0], [0, -1], [0, 1], [-1, 1]]
         },
 
         {
             id : "Z",
-            "color" : "#efefef",
+            "color" : "red",
             "coords" : [[0, 0], [0, -1], [-1, -1], [1, 0]]
         },
 
         {
             id : "S",
-            "color" : "#efefef",
+            "color" : "green",
             "coords" : [[0, 0], [-1, 0], [0, -1], [1, -1]]
         },
 
         {
             id : "T",
-            "color" : "#efefef",
+            "color" : "purple",
             "coords" : [[0, 0], [-1, 0], [0, -1], [1, 0]]
         },
 
         {
             id : "B",
-            "color" : "#efefef",
+            "color" : "cyan",
             "coords" : [[0, -1], [0, 0], [0, 1], [0, 2]]
         }
     ]
