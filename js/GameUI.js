@@ -2,8 +2,9 @@ var gameUI = (function ()
 {
     var self = {
         initialize: function () {
+            var interval = 0;
+            
             this.game = game;
-
             this.game.tictac(this.moveDown);
             this.game.onBottomChange(this.drawBottom);
             this.game.onRowsCompleted(this.updateScore);
@@ -13,6 +14,7 @@ var gameUI = (function ()
             this.container = document.getElementById('container');
             this.score = document.getElementById('score');
             this.level = document.getElementById('level');
+
 
             this.painter = new Painter(this.canvas, this.container, this.game.width, this.game.height);
             this.bottomPainter = new Painter(this.canvasBottom, this.container, this.game.width, this.game.height);
@@ -47,11 +49,18 @@ var gameUI = (function ()
             };
 
             window.addEventListener('deviceorientation', function (event) {
-                var vel = Math.round(event.gamma / 30);
-                var dx = vel / Math.abs(vel) || 0;
-                if(dx !== 0){
-                    self.shiftFallingShape(vel, 0);
-                    console.log('eehh', vel);
+                var dx;
+                dx = event.gamma / Math.abs(event.gamma);
+                if (Math.abs(event.gamma) > 10) {
+                    if (interval === 0) {
+                        self.shiftFallingShape(dx , 0);
+                        interval = setInterval(function(){
+                            self.shiftFallingShape(dx , 0);
+                        }, 200);
+                    }
+                }  else if(interval !== 0){
+                    clearInterval(interval);
+                    interval = 0;
                 }
             });
 
