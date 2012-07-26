@@ -87,15 +87,16 @@ var gameUI = (function ()
         },
 
         setCanvasDimensions: function (canvas) {
-            var ratio = this.game.height / this.game.width;
+            var ratio = this.game.height / this.game.width,
+                padding = window.getComputedStyle(this.container).getPropertyValue("padding").slice(0, -2);
             if (this.container.offsetHeight / this.container.offsetWidth < ratio) {
-                canvas.height = this.container.offsetHeight;
                 canvas.width = this.container.offsetHeight / ratio;
             }
             else {
                 canvas.width = this.container.offsetWidth;
-                canvas.height = ratio * this.container.offsetWidth;
             }
+            canvas.width -= 2 * padding; 
+            canvas.height = ratio * canvas.width;
 
             canvas.style.left = (this.container.offsetWidth - canvas.width)/2.0 + 'px';
         },
@@ -118,7 +119,6 @@ var gameUI = (function ()
         },
 
         updateScore: function() {
-            console.log(self.game.score);
             self.score.innerHTML = self.game.score;
             self.level.innerHTML = self.game.level;
         }
