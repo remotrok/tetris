@@ -51,6 +51,9 @@ html, body, div {
 	background-color: #efefff;
 	position: absolute;
 	z-index: 0;
+    -moz-box-shadow: inset 0 0 5px #000000;
+    -webkit-box-shadow: inset 0 0 5px #000000;
+    box-shadow: inset 0 0 5px #000000;
 }
 
 #fog {

@@ -56,6 +56,9 @@ var Painter = function (canvas, container, width, height) {
         for (j = 0; j < shapes.length; j++) {
                 this.draw(shapes[j], l);
             }
+        this.context.fillStyle = 'rgba(0, 0, 0, 0.2)';
+        this.context.fillRect(0, 0,
+                this.canvas.width, this.canvas.height);
     };
 
     this.clear = function (shape, l) {
