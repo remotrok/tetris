@@ -97,14 +97,15 @@ var gameUI = (function ()
 
         setCanvasDimensions: function (canvas) {
             var ratio = this.game.height / this.game.width,
-                padding = window.getComputedStyle(this.container).getPropertyValue("padding").slice(0, -2);
+                paddingTop = +window.getComputedStyle(this.container).getPropertyValue("padding-top").slice(0, -2),
+                paddingBottom = +window.getComputedStyle(this.container).getPropertyValue("padding-bottom").slice(0, -2);
             if (this.container.offsetHeight / this.container.offsetWidth < ratio) {
                 canvas.width = this.container.offsetHeight / ratio;
             }
             else {
                 canvas.width = this.container.offsetWidth;
             }
-            canvas.width -= 2 * padding; 
+            canvas.width -= (paddingTop + paddingBottom);
             canvas.height = ratio * canvas.width;
 
             canvas.style.left = (this.container.offsetWidth - canvas.width)/2.0 + 'px';
