@@ -3,7 +3,7 @@ var game = {
 	height: 20,
 	rows: [],
 	tick: 500,
-	score: 100,
+	score: 0,
 	levelScore: 2,
 	level: 1,
 
