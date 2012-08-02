@@ -9,12 +9,14 @@ var gameUI = (function ()
             this.game.onBottomChange(this.drawBottom);
             this.game.onRowsCompleted(this.updateScore);
             this.game.onLevelChange(this.updateLevel);
+            this.game.onGameOver(this.closeCurtain);
 
             this.canvas = document.getElementById('canvas');
             this.canvasBottom = document.getElementById('canvasBottom');
             this.container = document.getElementById('container');
             this.score = document.getElementById('score');
             this.level = document.getElementById('level');
+            this.curtain = document.getElementById('curtain');
 
 
             this.painter = new Painter(this.canvas, this.container, this.game.width, this.game.height);
@@ -66,6 +68,9 @@ var gameUI = (function ()
             });
 
             window.onkeydown = function(event) {
+                if (event.which === 32) {
+                    self.start();
+                }
                 if (event.which === 38) {
                     self.rotateFallingShape();
                 }
@@ -78,6 +83,7 @@ var gameUI = (function ()
                 if (event.which === 40) {
                     self.fallingShapeToBottom();
                 }
+
             };
         },
 
@@ -112,13 +118,23 @@ var gameUI = (function ()
             canvas.style.left = (this.container.offsetWidth - canvas.width)/2.0 + 'px';
         },
 
+        setCurtainDimensions: function () {
+            this.curtain.style.width = this.canvas.width + 4 + 'px';
+            this.curtain.style.left = this.canvas.style.left.slice(0, -2) - 2 + 'px';
+        },
+
         resizeCanvas: function () {
             self.setCanvasDimensions(self.canvas);
             self.setCanvasDimensions(self.canvasBottom);
+            self.setCurtainDimensions();
             self.l = self.canvas.width / self.game.width;
             self.painter.redraw(self.game.shape, self.l);
             self.bottomPainter.redrawShapes(self.game.rows, self.l);
 
+        },
+
+        closeCurtain: function () {
+            self.curtain.className = "curtain_closed";
         },
 
         moveDown: function () {
@@ -135,6 +151,11 @@ var gameUI = (function ()
 
         updateLevel: function() {
             self.level.innerHTML = self.game.getLevel();
+        },
+
+        start: function() {
+            this.game.run();
+            this.curtain.className = "curtain_open";
         }
 
 

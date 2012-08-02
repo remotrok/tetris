@@ -3,7 +3,7 @@
 window.onload = function () {
 
     gameUI.initialize();
-    game.run();
+    // gameUI.start();
 };
 
 

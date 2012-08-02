@@ -9,6 +9,8 @@ var game = {
 	level: 1,
 
 	initialize : function () {
+		this.rows = [];
+		this.score = 0;
 		var i, j, newSquares;
 		for (i = 0; i < this.height; i++) {
 			this.rows.push({xabs: 0, yabs: i, squares: Array(this.width)});
@@ -29,6 +31,14 @@ var game = {
 
 	onLevelChange: function(callback) {
 		this.updateLevelView = callback;
+	},
+
+	onGameStart: function(callback) {
+		this.gameStart = callback;
+	},
+
+	onGameOver: function(callback) {
+		this.gameOver = callback;
 	},
 
 	getLevel: function () {
@@ -170,14 +180,20 @@ var game = {
 		this.shape.xabs = this.width / 2 - 1;
 		this.shape.yabs -= this.shape.ymin();
 		if (this.isInvalidShapePosition()) {
-			clearInterval(this.currentInterval);
-			console.log("Game Over :'-(");
+			this.stop();
 		}
 	},
 
 	run: function () {
+		this.initialize();
+		this.bottomChange();
 		this.createNewFallingShape();
 		this.startTick();
+	},
+
+	stop: function () {
+		clearInterval(this.currentInterval);
+		this.gameOver();
 	},
 
 	startTick: function() {
