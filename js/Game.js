@@ -2,7 +2,8 @@ var game = {
 	width: 10,
 	height: 20,
 	rows: [],
-	tick: 500,
+	initialTick: 500,
+	deltaTick: 50,
 	score: 0,
 	levelScore: 2,
 	level: 1,
@@ -24,6 +25,22 @@ var game = {
 
 	onRowsCompleted: function(callback) {
 		this.updateScoreView = callback;
+	},
+
+	onLevelChange: function(callback) {
+		this.updateLevelView = callback;
+	},
+
+	getLevel: function () {
+		return 1 + Math.floor(this.score / this.levelScore);
+	},
+
+	getPeriod: function () {
+		return this.initialTick - this.getLevel() * this.deltaTick;
+	},
+
+	hasLevelChanged: function () {
+		return this.score % this.levelScore === 0;
 	},
 
 	distanceToBottom: function () {
@@ -117,9 +134,14 @@ var game = {
 
 	updateScore: function (completeRows) {
 		if (completeRows.length) {
+			var currentLevel = this.getLevel();
 			this.score += completeRows.length;
-			this.level = 1 + Math.floor(this.score / this.levelScore);
 			this.updateScoreView();
+			if (this.hasLevelChanged()) {
+				this.updateLevelView();
+				this.startTick();
+			}
+
 		}
 	},
 
@@ -155,7 +177,14 @@ var game = {
 
 	run: function () {
 		this.createNewFallingShape();
-		this.currentInterval = setInterval(this.tictacCallback, this.tick);
+		this.startTick();
+	},
+
+	startTick: function() {
+		if(this.currentInterval) {
+			clearInterval(this.currentInterval);
+		}
+		this.currentInterval = setInterval(this.tictacCallback, this.getPeriod());
 	}
 };
 

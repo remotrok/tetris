@@ -3,11 +3,12 @@ var gameUI = (function ()
     var self = {
         initialize: function () {
             var interval = 0;
-            
+
             this.game = game;
             this.game.tictac(this.moveDown);
             this.game.onBottomChange(this.drawBottom);
             this.game.onRowsCompleted(this.updateScore);
+            this.game.onLevelChange(this.updateLevel);
 
             this.canvas = document.getElementById('canvas');
             this.canvasBottom = document.getElementById('canvasBottom');
@@ -130,8 +131,13 @@ var gameUI = (function ()
 
         updateScore: function() {
             self.score.innerHTML = self.game.score;
-            self.level.innerHTML = self.game.level;
+        },
+
+        updateLevel: function() {
+            self.level.innerHTML = self.game.getLevel();
         }
+
+
     };
 
     return self;
