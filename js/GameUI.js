@@ -17,6 +17,7 @@ var gameUI = (function ()
             this.score = document.getElementById('score');
             this.level = document.getElementById('level');
             this.curtain = document.getElementById('curtain');
+            this.message = document.getElementById('message');
 
 
             this.painter = new Painter(this.canvas, this.container, this.game.width, this.game.height);
@@ -134,6 +135,7 @@ var gameUI = (function ()
         },
 
         closeCurtain: function () {
+            self.message.innerHTML = "Game Over";
             self.curtain.className = "curtain_closed";
         },
 

@@ -49,8 +49,13 @@ html, body, div {
 	z-index: 3;
 }
 
+#message {
+	position: absolute;
+	top: 50%;
+}
+
 .curtain_open {
-	height: 0;
+	top: -100%;
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
@@ -59,7 +64,7 @@ html, body, div {
 }
 
 .curtain_closed {
-	height: 100%;
+	top: 0;
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
