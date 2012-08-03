@@ -124,7 +124,6 @@ var game = {
 		var completeRows;
 		this.addFallingShapeToBottom();
 		completeRows = this.getCompleteRows();
-		this.updateScore(completeRows);
 		this.eliminateCompleteRows(completeRows);
 		this.bottomChange();
 		this.createNewFallingShape();
@@ -134,25 +133,22 @@ var game = {
 		var i, j, rowToEliminate;
 		for (i=0; i<completeRows.length; i++) {
 			rowToEliminate = completeRows[i];
-
 			for (j = rowToEliminate; j >= i + 1; j--) {
 				this.rows[j].squares = this.rows[j-1].squares;
 			}
 			this.rows[i].squares = Array(this.width);
+			this.updateScore();
 		}
 	},
 
-	updateScore: function (completeRows) {
-		if (completeRows.length) {
-			var currentLevel = this.getLevel();
-			this.score += completeRows.length;
-			this.updateScoreView();
-			if (this.hasLevelChanged()) {
-				this.updateLevelView();
-				this.startTick();
-			}
-
+	updateScore: function () {
+		this.score += 1;
+		this.updateScoreView();
+		if (this.hasLevelChanged()) {
+			this.updateLevelView();
+			this.startTick();
 		}
+
 	},
 
 	getCompleteRows: function () {
