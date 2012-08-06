@@ -6,37 +6,32 @@ html, body, div {
 	height: 100%;
 	text-align:center;
     overflow: hidden;
-    font-family: Impact, Charcoal, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #header {
-	height: 10%;
+	position: absolute;
 }
 
-#score {
-	position: absolute;
-	left: 10px;
-	background-color: #ef00ef;
-	/*float: left;*/
-    font-family: Impact, Charcoal, sans-serif;
+.info {
+	/*background-color: #efef00;*/
+	font-family: Impact, Charcoal, sans-serif;
     width: 3em;
-    height: 3em;
-    line-height: 3em;
+    height: 2em;
+    line-height: 2em;
+    z-index: 5;
 }
 
-#level {
-	position: absolute;
-	right: 10px;
-	background-color: #efef00;
-	/*float: right;*/
-    font-family: Impact, Charcoal, sans-serif;
-    width: 3em;
-    height: 3em;
-    line-height: 3em;
+.label {
+	width: 3em;
+	height: 1em;
 }
 
 #container {
-    padding: 10px;
+	position: absolute;
+	left: 0;
+	top: 0;
+    padding: 5px;
     background-color: #efefef;
 	height: 100%;
 	width: 100%;
@@ -46,7 +41,7 @@ html, body, div {
 #curtain {
 	background: #efefef;
 	position: absolute;
-	z-index: 3;
+	z-index: 4;
 }
 
 #message {
@@ -56,20 +51,20 @@ html, body, div {
 
 .curtain_open {
 	top: -100%;
-	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	-ms-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
+	-webkit-transition: all 1.0s ease-in-out;
+	-moz-transition: all 1.0s ease-in-out;
+	-o-transition: all 1.0s ease-in-out;
+	-ms-transition: all 1.0s ease-in-out;
+	transition: all 1.0s ease-in-out;
 }
 
 .curtain_closed {
 	top: 0;
-	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	-ms-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
+	-webkit-transition: all 1.0s ease-in-out;
+	-moz-transition: all 1.0s ease-in-out;
+	-o-transition: all 1.0s ease-in-out;
+	-ms-transition: all 1.0s ease-in-out;
+	transition: all 1.0s ease-in-out;
 }
 
 #canvas {
@@ -77,7 +72,7 @@ html, body, div {
 	display:inline;
 	border: 1px solid #000;
 	position: absolute;
-	z-index: 2;
+	z-index: 3;
 }
 
 #canvasBottom {
@@ -85,7 +80,7 @@ html, body, div {
 	display:inline;
 	border: 1px solid #000;
 	position: absolute;
-	z-index: 0;
+	z-index: 1;
     -moz-box-shadow: inset 0 0 5px #000000;
     -webkit-box-shadow: inset 0 0 5px #000000;
     box-shadow: inset 0 0 5px #000000;
@@ -94,7 +89,7 @@ html, body, div {
 #fog {
 	position: absolute;
 	background-color: rgba(0, 0, 0, 0.2);
-	z-index: 1;
+	z-index: 2;
 }
 
 #play_btn {
