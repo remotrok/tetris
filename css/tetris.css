@@ -96,3 +96,12 @@ html, body, div {
 	background-color: rgba(0, 0, 0, 0.2);
 	z-index: 1;
 }
+
+#play_btn {
+	cursor: pointer;
+	color: rgba(0, 0, 0, 0.5);
+}
+
+#play_btn:hover {
+	color: rgba(0, 0, 0, 1.0);
+}

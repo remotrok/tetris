@@ -18,6 +18,8 @@ var gameUI = (function ()
             this.level = document.getElementById('level');
             this.curtain = document.getElementById('curtain');
             this.message = document.getElementById('message');
+            this.playButton = document.getElementById('play_btn');
+
 
 
             this.painter = new Painter(this.canvas, this.container, this.game.width, this.game.height);
@@ -85,6 +87,10 @@ var gameUI = (function ()
                     self.fallingShapeToBottom();
                 }
 
+            };
+
+            this.playButton.onclick = function(event) {
+                self.start();
             };
         },
 
