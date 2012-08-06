@@ -112,7 +112,9 @@ var gameUI = (function ()
         setCanvasDimensions: function (canvas) {
             var ratio = this.game.height / this.game.width,
                 paddingTop = +window.getComputedStyle(this.container).getPropertyValue("padding-top").slice(0, -2),
-                paddingBottom = +window.getComputedStyle(this.container).getPropertyValue("padding-bottom").slice(0, -2);
+                paddingBottom = +window.getComputedStyle(this.container).getPropertyValue("padding-bottom").slice(0, -2),
+                paddingLeft = +window.getComputedStyle(this.container).getPropertyValue("padding-left").slice(0, -2),
+                paddingRight = +window.getComputedStyle(this.container).getPropertyValue("padding-right").slice(0, -2);
             if (this.container.offsetHeight / this.container.offsetWidth < ratio) {
                 canvas.width = this.container.offsetHeight / ratio;
             }
@@ -122,7 +124,7 @@ var gameUI = (function ()
             canvas.width -= (paddingTop + paddingBottom);
             canvas.height = ratio * canvas.width;
 
-            canvas.style.left = (this.container.offsetWidth - canvas.width)/2.0 + 'px';
+            canvas.style.left = (this.container.offsetWidth - canvas.width)/2.0 - paddingLeft + 'px';
         },
 
         setCurtainDimensions: function () {
