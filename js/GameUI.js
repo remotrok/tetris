@@ -19,11 +19,10 @@ var gameUI = (function ()
             this.curtain = document.getElementById('curtain');
             this.message = document.getElementById('message');
             this.playButton = document.getElementById('play_btn');
-
-
-
-            this.painter = new Painter(this.canvas, this.container, this.game.width, this.game.height);
-            this.bottomPainter = new Painter(this.canvasBottom, this.container, this.game.width, this.game.height);
+            this.painter = new Painter(this.canvas, this.container, 
+                this.game.width, this.game.height);
+            this.bottomPainter = new Painter(this.canvasBottom, this.container, 
+                this.game.width, this.game.height);
 
             window.addEventListener('resize', this.resizeCanvas, false);
 
@@ -92,6 +91,8 @@ var gameUI = (function ()
             this.playButton.onclick = function(event) {
                 self.start();
             };
+
+            this.container.style['visibility'] = 'visible';
         },
 
         rotateFallingShape: function () {
