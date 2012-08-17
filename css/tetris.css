@@ -58,6 +58,9 @@ html, body {
 	background: #efefef;
 	position: fixed;
 	z-index: 4;
+    -moz-box-shadow: 0 4px 4px -4px #000000;
+    -webkit-box-shadow: 0 4px 4px -4px #000000;
+    box-shadow: 0 4px 4px -4px #000000;
 }
 
 #message {
