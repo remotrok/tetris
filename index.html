@@ -1,17 +1,23 @@
 <!doctype html>
 
-
-
 <html>
-
     <head>
         <title>Tetris</title>
-        <meta charset='utf-8'>
+        
+		<meta charset='utf-8'>
         <meta name="HandheldFriendly" content="True">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link rel="stylesheet" href="css/tetris.css" />
+        
+		<link rel="stylesheet" href="css/tetris.css" />
+		
+		<script src="js/Shape.js"> </script>
+		<script src="js/ShapeMaker.js"> </script>
+		<script src="js/Painter.js"> </script>
+		<script src="js/GameUI.js"> </script>
+		<script src="js/Game.js"> </script>
+		<script src="js/visualTest.js"> </script>
+		
     </head>
-
 
     <body>
 		<div id="container">
@@ -22,27 +28,13 @@
                 <div class="label">level</div>
                 <div id="level" class="info">1</div>
             </div>
-
             <canvas id="canvasBottom"></canvas>
             <canvas id="canvas"></canvas>
             <div id="curtain">
                 <br><br><br>
-                <h2><a id="play_btn"> play ▶ </a><h2>
-                <h1>
-                    <div id="message">
-
-                    </div>
-                </h1>
+                <h2><a id="play_btn"> play ▶ </a></h2>
+                <div id="message"></div>
             </div>
         </div>
     </body>
-	<script src="js/Shape.js"> </script>
-	<script src="js/ShapeMaker.js"> </script>
-	<script src="js/Painter.js"> </script>
-	<script src="js/GameUI.js"> </script>
-	<script src="js/Game.js"> </script>
-	<script src="js/visualTest.js"> </script>
-
-
 </html>
-

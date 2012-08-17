@@ -14,7 +14,6 @@ html, body, div {
 }
 
 .info {
-	/*background-color: #efef00;*/
 	font-family: Impact, Charcoal, sans-serif;
     width: 3em;
     height: 2em;
@@ -46,6 +45,8 @@ html, body, div {
 }
 
 #message {
+	font-size: xx-large;
+	font-weight: bold;
 	position: absolute;
 	top: 50%;
 }
