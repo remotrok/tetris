@@ -18,6 +18,7 @@ var gameUI = (function ()
             this.level = document.getElementById('level');
             this.curtain = document.getElementById('curtain');
             this.message = document.getElementById('message');
+			this.header = document.getElementById('header');
             this.playButton = document.getElementById('play_btn');
             this.painter = new Painter(this.canvas, this.container, 
                 this.game.width, this.game.height);
@@ -117,13 +118,16 @@ var gameUI = (function ()
                 paddingLeft = +window.getComputedStyle(this.container).getPropertyValue("padding-left").slice(0, -2),
                 paddingRight = +window.getComputedStyle(this.container).getPropertyValue("padding-right").slice(0, -2);
             if (this.container.offsetHeight / this.container.offsetWidth < ratio) {
-                canvas.width = this.container.offsetHeight / ratio;
+                canvas.height = this.container.offsetHeight;
             }
             else {
-                canvas.width = this.container.offsetWidth;
+                canvas.height = this.container.offsetWidth * ratio;
             }
-            canvas.width -= (paddingTop + paddingBottom);
-            canvas.height = ratio * canvas.width;
+			console.log(paddingTop + paddingBottom);
+			console.log(canvas.height);
+            canvas.height -= 2 * (paddingTop + paddingBottom);
+			console.log(canvas.height);
+            canvas.width = canvas.height / ratio;
 
             canvas.style.left = (this.container.offsetWidth - canvas.width)/2.0 - paddingLeft + 'px';
         },
@@ -132,11 +136,17 @@ var gameUI = (function ()
             this.curtain.style.width = this.canvas.width + 4 + 'px';
             this.curtain.style.left = this.canvas.style.left.slice(0, -2) - 2 + 'px';
         },
+		
+		setHeaderDimensions: function () {
+            this.header.style.width = this.canvas.width + 'px';
+            this.header.style.left = this.canvas.style.left.slice(0, -2) + 'px';
+        },
 
         resizeCanvas: function () {
             self.setCanvasDimensions(self.canvas);
             self.setCanvasDimensions(self.canvasBottom);
             self.setCurtainDimensions();
+			self.setHeaderDimensions();
             self.l = self.canvas.width / self.game.width;
             self.painter.redraw(self.game.shape, self.l);
             self.bottomPainter.redrawShapes(self.game.rows, self.l);

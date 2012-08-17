@@ -1,16 +1,22 @@
-html, body, div {
+html, body {
 	border: 0;
 	padding: 0;
 	margin: 0;
 	width: 100%;
 	height: 100%;
-	text-align:center;
-    overflow: hidden;
+	overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 #header {
-	position: absolute;
+	text-align:center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 2em;
+	width: 100%;
+	background-color: #efefef;
+    z-index: 10;
 }
 
 .info {
@@ -22,8 +28,16 @@ html, body, div {
 }
 
 .label {
-	width: 3em;
-	height: 1em;
+	height: 2em;
+    line-height: 2em;
+}
+
+.float_left {
+	float: left;
+}
+
+.float_right {
+	float: right;
 }
 
 #container {
@@ -32,23 +46,26 @@ html, body, div {
 	left: 0;
 	top: 0;
     padding: 5px;
+	padding-top: 2em;
     background-color: #efefef;
 	height: 100%;
 	width: 100%;
-	text-align:center;
 }
 
 #curtain {
+	text-align:center;
+    height: 100%;
 	background: #efefef;
-	position: absolute;
+	position: fixed;
 	z-index: 4;
 }
 
 #message {
+	text-align:center;
 	font-size: xx-large;
 	font-weight: bold;
-	position: absolute;
-	top: 50%;
+	position: relative;
+	top: 25%;
 }
 
 .curtain_open {
@@ -69,11 +86,15 @@ html, body, div {
 	transition: all 1.0s ease-in-out;
 }
 
+.curtain_start {
+	top: 0;
+}
+
 #canvas {
     -webkit-tap-highlight-color:rgba(0,0,0,0);
 	display:inline;
 	border: 1px solid #000;
-	position: absolute;
+	position: fixed;
 	z-index: 3;
 }
 
@@ -81,7 +102,7 @@ html, body, div {
     -webkit-tap-highlight-color:rgba(0,0,0,0);
 	display:inline;
 	border: 1px solid #000;
-	position: absolute;
+	position: fixed;
 	z-index: 1;
     -moz-box-shadow: inset 0 0 5px #000000;
     -webkit-box-shadow: inset 0 0 5px #000000;
@@ -89,12 +110,14 @@ html, body, div {
 }
 
 #fog {
-	position: absolute;
+	position: fixed;
 	background-color: rgba(0, 0, 0, 0.2);
 	z-index: 2;
 }
 
 #play_btn {
+	position: relative;
+	top: 20%;
 	cursor: pointer;
 	color: rgba(0, 0, 0, 0.5);
 }
